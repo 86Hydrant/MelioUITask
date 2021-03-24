@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container'
@@ -16,8 +14,10 @@ const useStyles = makeStyles({
     },
     card: {
         maxWidth: "300px",
-        minHeight: "400px",
-        padding: "15px",
+        minHeight: "440px",
+        padding: "30px",
+        display: "flex",
+        flexDirection: "column",
 
     },
     title: {
@@ -31,9 +31,15 @@ const useStyles = makeStyles({
     button: {
         backgroundColor: "#56b8a7",
     },
-    priceWrapper: {
-        alignSelf: "flex-end",
+    bottomWrapper: {
+        display: "flex",
+        marginTop: "auto",
+        marginBottom: "15px",
+        paddingTop: "10px"
     },
+    price: {
+
+    }
 });
 
 function Products() {
@@ -70,43 +76,38 @@ function Products() {
                 {data && data.docs.map(product => (
 
                     <Grid item >
-                        <Card key={product.id} className={classes.card}>
-                            <CardContent>
-                                <Typography className={classes.title} gutterBottom>
-                                    {product.name}
-                                </Typography>
-                                <Typography>
-                                    {product.h1}
-                                </Typography>
+                        <Card key={product.id} className={classes.card} p={5}>
+                            <Typography className={classes.title} gutterBottom>
+                                {product.name}
+                            </Typography>
+                            <Typography>
+                                {product.h1}
+                            </Typography>
 
-                                <Typography>
-                                    {product.h2}
-                                </Typography>
+                            <Typography>
+                                {product.h2}
+                            </Typography>
 
-                                <Typography>
-                                    {product.h3}
-                                </Typography>
-
-                                <Grid container justify="space-between" alignItems="center" className={classes.priceWrapper} >
-                                    <Grid item  >
-                                        <Typography>
-                                            {product.unit} {product.price}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button variant="contained" color="primary">Add to cart</Button>
-                                    </Grid>
+                            <Typography>
+                                {product.h3}
+                            </Typography>
+                            <Grid container justify="space-between" alignItems="center" className={classes.bottomWrapper} >
+                                <Grid item  >
+                                    <Typography color="textSecondary" variant="h5">
+                                        {product.unit} {product.price}
+                                    </Typography>
                                 </Grid>
-                            </CardContent>
-
-
+                                <Grid item>
+                                    <Button size="large" variant="contained" color="primary">Add to cart</Button>
+                                </Grid>
+                            </Grid>
 
                         </Card>
                     </Grid>
                 ))
                 }
             </Grid>
-        </Container>
+        </Container >
     )
 }
 
