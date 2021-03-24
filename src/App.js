@@ -1,4 +1,5 @@
 import './App.css';
+import Products from './components/Products.js'
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <header className="App-header">
         Melio UI task
       </header>
+      <Products />
     </div>
   );
 }

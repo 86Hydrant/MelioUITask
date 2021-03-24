@@ -1,0 +1,63 @@
+import React, { useEffect, useState } from "react"
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles({
+    root: {
+        minWidth: 275,
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+});
+
+function Products() {
+    const [data, setData] = useState(null);
+    // const { loading, setLoading } = useState(false)
+
+    const classes = useStyles();
+    const fetchData = async () => {
+        const url = "https://falconx-development.coffee4tech.net/products/public?country=GB"
+        const response = await fetch(url);
+        const json = await response.json();
+
+        console.log(data)
+        setData(json);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+
+    console.log(data);
+
+    return (
+        <div>
+            {/* Only render if the data is already there*/}
+            { data && data.docs.map(product => (
+                <Card key={product.id}>
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            {product.name}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            ))}
+        </div>
+    )
+}
+
+export default Products
