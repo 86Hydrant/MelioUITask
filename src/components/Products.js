@@ -5,21 +5,34 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid';
 
+// button color? #56b8a7
 const useStyles = makeStyles({
+
     root: {
         minWidth: 275,
     },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+    card: {
+        maxWidth: "300px",
+        minHeight: "400px",
+        padding: "15px",
+
     },
     title: {
-        fontSize: 14,
+        fontSize: 20,
+        color: "#303f9f",
+        paddingBottom: "10px"
     },
     pos: {
         marginBottom: 12,
+    },
+    button: {
+        backgroundColor: "#56b8a7",
+    },
+    priceWrapper: {
+        alignSelf: "flex-end",
     },
 });
 
@@ -35,6 +48,7 @@ function Products() {
 
         console.log(data)
         setData(json);
+
     };
 
     useEffect(() => {
@@ -45,18 +59,54 @@ function Products() {
     console.log(data);
 
     return (
-        <div>
-            {/* Only render if the data is already there*/}
-            { data && data.docs.map(product => (
-                <Card key={product.id}>
-                    <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            {product.name}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            ))}
-        </div>
+        <Container maxWidth="lg">
+            <Grid container
+                direction="row"
+                justify="space-around"
+                alignItems="stretch"
+                spacing={5}
+                wrap="wrap">
+                {/* Only render if the data is already there*/}
+                {data && data.docs.map(product => (
+
+                    <Grid item >
+                        <Card key={product.id} className={classes.card}>
+                            <CardContent>
+                                <Typography className={classes.title} gutterBottom>
+                                    {product.name}
+                                </Typography>
+                                <Typography>
+                                    {product.h1}
+                                </Typography>
+
+                                <Typography>
+                                    {product.h2}
+                                </Typography>
+
+                                <Typography>
+                                    {product.h3}
+                                </Typography>
+
+                                <Grid container justify="space-between" alignItems="center" className={classes.priceWrapper} >
+                                    <Grid item  >
+                                        <Typography>
+                                            {product.unit} {product.price}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button variant="contained" color="primary">Add to cart</Button>
+                                    </Grid>
+                                </Grid>
+                            </CardContent>
+
+
+
+                        </Card>
+                    </Grid>
+                ))
+                }
+            </Grid>
+        </Container>
     )
 }
 
