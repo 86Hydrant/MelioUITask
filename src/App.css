@@ -6,3 +6,28 @@ p {
  .App {
   background-color: lightgrey;
 }
+
+.cart-container {
+  position: absolute;
+  top: 55px;
+  right: 20px;
+  min-height: 300px;
+  min-width: 200px;
+
+}
+
+.cart-container::after {
+   content: '';
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: white;
+  width: 10px;
+  height: 10px;
+  transform: rotate(180deg);
+  
+  /* The points are: (left top: x y, right top: x y, center bottom: x y) */
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  
+
+}
