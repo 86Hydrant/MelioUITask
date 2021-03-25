@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "auto",
     },
 
-}));;
+}));
 
 
 function Nav() {
