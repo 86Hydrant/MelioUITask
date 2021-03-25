@@ -5,12 +5,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
+import Product from "./Product"
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/actions/productActions";
 
 
-// button color? #56b8a7
 const useStyles = makeStyles({
 
     root: {
@@ -67,35 +67,14 @@ function Products() {
                 wrap="wrap">
                 {/* Only render if the data is already there, make a card for every product*/}
                 {productsData && productsData.docs.map(product => (
-                    <Grid item key={product.id}>
-                        <Card className={classes.card} p={5}>
-                            <Typography className={classes.title} gutterBottom>
-                                {product.name}
-                            </Typography>
-                            <Typography>
-                                {product.h1}
-                            </Typography>
-
-                            <Typography>
-                                {product.h2}
-                            </Typography>
-
-                            <Typography>
-                                {product.h3}
-                            </Typography>
-                            <Grid container justify="space-between" alignItems="center" className={classes.bottomWrapper} >
-                                <Grid item  >
-                                    <Typography color="textSecondary" variant="h5">
-                                        {product.unit} {product.price}
-                                    </Typography>
-                                </Grid>
-                                <Grid item>
-                                    <Button size="large" variant="contained" color="primary">Add to cart</Button>
-                                </Grid>
-                            </Grid>
-
-                        </Card>
-                    </Grid>
+                    <Product
+                        id={product.id}
+                        h1={product.h1}
+                        h2={product.h2}
+                        h3={product.h3}
+                        name={product.name}
+                        price={product.price}
+                        unit={product.unit} />
                 ))
                 }
             </Grid>
