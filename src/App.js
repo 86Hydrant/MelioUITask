@@ -1,12 +1,12 @@
-import './App.css';
-import Products from './components/Products.js'
+import "./App.css";
+import Nav from "./components/Nav.js"
+import Products from "./components/Products.js"
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        Melio UI task
-      </header>
+      <Nav />
       <Products />
     </div>
   );

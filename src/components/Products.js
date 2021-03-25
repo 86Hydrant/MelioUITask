@@ -52,7 +52,6 @@ function Products() {
         const response = await fetch(url);
         const json = await response.json();
 
-        console.log(data)
         setData(json);
 
     };
@@ -60,9 +59,6 @@ function Products() {
     useEffect(() => {
         fetchData();
     }, []);
-
-
-    console.log(data);
 
     return (
         <Container maxWidth="lg" className={classes.wrapper}>
