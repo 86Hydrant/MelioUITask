@@ -11,15 +11,23 @@ const useStyles = makeStyles({
 });
 
 function ShoppingCart() {
-    let productsInCart = useSelector(state => state.cartItems);
+    let cartItems = useSelector(state => state.cart.cartItems);
+
     const dispatch = useDispatch;
+
+    console.log(cartItems)
 
     const classes = useStyles();
 
     return (
         <Paper variant="elevation" className="cart-container">
             <Grid container className={classes.cartContainer}>
-                <p>Hello Product</p>
+                <ul>
+                    {cartItems && cartItems.map(item => (
+                        <li>{item.name}</li>
+                    ))
+                    }
+                </ul>
             </Grid>
         </Paper>
     )
