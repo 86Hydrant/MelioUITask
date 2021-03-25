@@ -6,7 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
 import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/actions/productActions";
+import { FETCH_PRODUCTS } from "../redux/types/types";
 
 // button color? #56b8a7
 const useStyles = makeStyles({
@@ -45,22 +47,18 @@ const useStyles = makeStyles({
 });
 
 function Products() {
-    const [data, setData] = useState(null);
-    // const { loading, setLoading } = useState(false)
-
-    const classes = useStyles();
-    const fetchData = async () => {
-        const url = "https://falconx-development.coffee4tech.net/products/public?country=GB"
-        const response = await fetch(url);
-        const json = await response.json();
-
-        setData(json);
-
-    };
+    // const [data, setData] = useState(null);
+    const productsData = useSelector(state => state.products.items);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        dispatch(fetchProducts())
+    }, [dispatch]);
+
+    const classes = useStyles();
+
+
+    console.log(productsData)
 
     return (
         <Container maxWidth="lg" className={classes.wrapper}>
@@ -71,10 +69,10 @@ function Products() {
                 spacing={5}
                 wrap="wrap">
                 {/* Only render if the data is already there, make a card for every product*/}
-                {data && data.docs.map(product => (
+                {productsData && productsData.docs.map(product => (
 
-                    <Grid item >
-                        <Card key={product.id} className={classes.card} p={5}>
+                    <Grid item key={product.id}>
+                        <Card className={classes.card} p={5}>
                             <Typography className={classes.title} gutterBottom>
                                 {product.name}
                             </Typography>
@@ -109,4 +107,5 @@ function Products() {
     )
 }
 
-export default connect((state) => ({ products: state.products }), { fetchProducts })(Products)
+// export default connect((state) => ({ products: state.products.items }), { fetchProducts })(Products)
+export default Products
