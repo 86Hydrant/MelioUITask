@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
+import { connect } from "react-redux";
+import { fetchProducts } from "../redux/actions/productActions";
 
 // button color? #56b8a7
 const useStyles = makeStyles({
@@ -107,4 +109,4 @@ function Products() {
     )
 }
 
-export default Products
+export default connect((state) => ({ products: state.products }), { fetchProducts })(Products)
