@@ -37,9 +37,9 @@ const useStyles = makeStyles({
         marginBottom: "15px",
         paddingTop: "10px"
     },
-    price: {
-
-    }
+    wrapper: {
+        paddingTop: "150px",
+    },
 });
 
 function Products() {
@@ -65,14 +65,14 @@ function Products() {
     console.log(data);
 
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" className={classes.wrapper}>
             <Grid container
                 direction="row"
                 justify="space-around"
                 alignItems="stretch"
                 spacing={5}
                 wrap="wrap">
-                {/* Only render if the data is already there*/}
+                {/* Only render if the data is already there, make a card for every product*/}
                 {data && data.docs.map(product => (
 
                     <Grid item >

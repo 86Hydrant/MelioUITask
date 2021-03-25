@@ -2,3 +2,7 @@
 p {
   padding: 6px 0;
 }
+
+ .App {
+  background-color: lightgrey;
+}
