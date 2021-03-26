@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../types/types";
+import { ADD_TO_CART, REMOVE_FROM_CART, DECREMENT } from "../types/types";
 
 export const addToCart = (product) => (dispatch, getState) => {
 
@@ -34,3 +34,14 @@ export const removeFromCart = (product) => (dispatch, getState) => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
+export const decrement = (product) => (dispatch, getState) => {
+    const cartItems = getState().cart.cartItems.slice();
+    cartItems.forEach(item => {
+        if (item.id === product.id) {
+            item.count--;
+        }
+    });
+
+    dispatch({ type: DECREMENT, payload: { cartItems } });
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}

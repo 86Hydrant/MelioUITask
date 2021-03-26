@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from "@material-ui/core/IconButton"
-import { removeFromCart, addToCart, } from "../redux/actions/cartActions"
+import { removeFromCart, addToCart, decrement } from "../redux/actions/cartActions"
 import { Box, Typography } from "@material-ui/core";
 
 
@@ -59,6 +59,15 @@ function ShoppingCart() {
 
     const classes = useStyles();
 
+    const handleDecrement = (product) => {
+        if (product.count === 0) {
+            dispatch(removeFromCart(product))
+        } else {
+            dispatch(decrement(product))
+        }
+    }
+
+
     const limitNameLength = (name) => {
         if (name.length > 19) {
             return `${name.substr(0, 19)}...`
@@ -77,7 +86,7 @@ function ShoppingCart() {
                             <Grid item direction="row" className={classes.cartItem}>
                                 {limitNameLength(item.name)}
                                 <span className={classes.quantityButtonContainer}>
-                                    <IconButton onClick={() => dispatch(removeFromCart(item))} className={classes.buttons}><RemoveIcon /></IconButton>
+                                    <IconButton onClick={() => handleDecrement(item)} className={classes.buttons}><RemoveIcon /></IconButton>
                                     <span className={classes.itemCount}>{item.count}</span>
                                     <IconButton onClick={() => dispatch(addToCart(item))} className={classes.buttons}><AddIcon /></IconButton>
                                 </span>
@@ -95,7 +104,6 @@ function ShoppingCart() {
                     </div>
                 </Box>
             </Grid>
-
         </Paper >
     )
 
