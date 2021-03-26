@@ -56,12 +56,14 @@ const useStyles = makeStyles({
 
 function ShoppingCart() {
     let cartItems = useSelector(state => state.cart.cartItems);
-    let priceTotal = useSelector(state => state.cart.itemPriceTotal);
+    // let priceTotal = useSelector(state => state.cart.itemPriceTotal);
     console.log(priceTotal)
 
     const dispatch = useDispatch();
 
-
+    useEffect(() => {
+        dispatch(priceTotal())
+    }, [])
 
     const classes = useStyles();
 
