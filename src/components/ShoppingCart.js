@@ -13,7 +13,8 @@ import { Box, Typography } from "@material-ui/core";
 const useStyles = makeStyles({
     cartContainer: {
         padding: "20px",
-        minWidth: "350px"
+        minWidth: "320px",
+        minHeight: "300px"
     },
     cartItemContainer: {
         listStyle: "none",
@@ -38,6 +39,17 @@ const useStyles = makeStyles({
     },
     buttons: {
         padding: "1px 4px",
+    },
+    itemTotalContainer: {
+        marginTop: "auto",
+        display: "block",
+        width: "100%"
+    },
+    total: {
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "8px",
+        paddingBottom: "20px"
     }
 });
 
@@ -74,8 +86,13 @@ function ShoppingCart() {
                     ))
                     }
                 </ul>
-                <Box className={classes.itemTotalContainer}>
-                    <Typography>Total:</Typography>
+
+                <Box container justifyContent="space-between" className={classes.itemTotalContainer} justifySelf="end">
+                    <hr />
+                    <div className={classes.total}>
+                        <span >Total</span>
+                        <span>{cartItems.length === 0 && "0"}</span>
+                    </div>
                 </Box>
             </Grid>
 
