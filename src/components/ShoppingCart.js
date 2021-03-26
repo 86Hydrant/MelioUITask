@@ -15,7 +15,18 @@ const useStyles = makeStyles({
     },
     cartItem: {
         listStyle: "none",
-    }
+    },
+    quantityButtonContainer: {
+        border: "1px solid lightgray",
+        borderRadius: "5px",
+        padding: "5px 1px",
+        marginLeft: "10px",
+    },
+    itemCount: {
+        borderRight: "1px solid lightgray",
+        borderLeft: "1px solid lightgray",
+        padding: "5px 10px"
+    },
 });
 
 function ShoppingCart() {
@@ -33,7 +44,7 @@ function ShoppingCart() {
                 <ul>
                     {cartItems && cartItems.map(item => (
                         <li className={classes.cartItem}>{item.name}
-                            <span><IconButton onClick={() => dispatch(removeFromCart(item))} size="small"><RemoveIcon /></IconButton>{item.count}<IconButton onClick={() => dispatch(addToCart(item))} size="small"><AddIcon /></IconButton></span>
+                            <span className={classes.quantityButtonContainer}><IconButton onClick={() => dispatch(removeFromCart(item))} size="small"><RemoveIcon /></IconButton><span className={classes.itemCount}>{item.count}</span><IconButton onClick={() => dispatch(addToCart(item))} size="small"><AddIcon /></IconButton></span>
                         </li>
                     ))
                     }
