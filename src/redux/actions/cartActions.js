@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, DECREMENT } from "../types/types";
+import { ADD_TO_CART, REMOVE_FROM_CART, DECREMENT, CALC_TOTAL } from "../types/types";
 
 export const addToCart = (product) => (dispatch, getState) => {
 
@@ -44,4 +44,23 @@ export const decrement = (product) => (dispatch, getState) => {
 
     dispatch({ type: DECREMENT, payload: { cartItems } });
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
+
+export const priceTotal = () => (dispatch, getState) => {
+    const cartItems = getState().cart.cartItems.slice();
+    let itemPrices = [];
+
+    cartItems.forEach((item) => {
+        if (item.count > 1) {
+            itemPrices.push(item.price * item.count)
+        } else {
+            itemPrices.push(item.price)
+        }
+        return itemPrices;
+    })
+    itemPrices.reduce((total, item) => total + item, 0);
+    dispatch({
+        type: CALC_TOTAL,
+        payload: { itemPrices }
+    })
 }

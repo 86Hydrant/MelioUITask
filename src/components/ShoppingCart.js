@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Paper from "@material-ui/core/Paper"
 import Grid from "@material-ui/core/Grid"
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux"
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from "@material-ui/core/IconButton"
-import { removeFromCart, addToCart, decrement } from "../redux/actions/cartActions"
+import { removeFromCart, addToCart, decrement, priceTotal } from "../redux/actions/cartActions"
 import { Box, Typography } from "@material-ui/core";
+
 
 
 const useStyles = makeStyles({
@@ -55,7 +56,12 @@ const useStyles = makeStyles({
 
 function ShoppingCart() {
     let cartItems = useSelector(state => state.cart.cartItems);
+    let priceTotal = useSelector(state => state.cart.itemPriceTotal);
+    console.log(priceTotal)
+
     const dispatch = useDispatch();
+
+
 
     const classes = useStyles();
 
@@ -100,7 +106,7 @@ function ShoppingCart() {
                     <hr />
                     <div className={classes.total}>
                         <span >Total</span>
-                        <span>{cartItems.length === 0 && "0"}</span>
+                        <span>{cartItems.length === 0 && "0"}{priceTotal}</span>
                     </div>
                 </Box>
             </Grid>
