@@ -61,6 +61,6 @@ export const priceTotal = () => (dispatch, getState) => {
     itemPrices.reduce((total, item) => total + item, 0);
     dispatch({
         type: CALC_TOTAL,
-        payload: { itemPrices }
+        payload: { itemPrices, cartItems }
     })
 }

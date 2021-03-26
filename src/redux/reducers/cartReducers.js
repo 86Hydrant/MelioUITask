@@ -10,7 +10,7 @@ export const cartReducer = (state = { cartItems: JSON.parse(localStorage.getItem
         case DECREMENT:
             return { cartItems: action.payload.cartItems };
         case CALC_TOTAL:
-            return { itemPriceTotal: action.payload.itemPrices }
+            return { ...state, itemPriceTotal: action.payload.itemPrices }
         default:
             return state;
     }

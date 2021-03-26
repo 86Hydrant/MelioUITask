@@ -61,9 +61,9 @@ function ShoppingCart() {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(priceTotal())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(priceTotal())
+    // }, [])
 
     const classes = useStyles();
 
@@ -108,7 +108,7 @@ function ShoppingCart() {
                     <hr />
                     <div className={classes.total}>
                         <span >Total</span>
-                        <span>{cartItems.length === 0 && "0"}{priceTotal}</span>
+                        <span>{priceTotal}</span>
                     </div>
                 </Box>
             </Grid>
