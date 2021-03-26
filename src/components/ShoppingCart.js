@@ -60,7 +60,7 @@ function ShoppingCart() {
     const classes = useStyles();
 
     const handleDecrement = (product) => {
-        if (product.count === 0) {
+        if (product.count === 1) {
             dispatch(removeFromCart(product))
         } else {
             dispatch(decrement(product))
