@@ -7,6 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from "@material-ui/core/IconButton"
 import { removeFromCart, addToCart, } from "../redux/actions/cartActions"
+import { Box, Typography } from "@material-ui/core";
 
 
 const useStyles = makeStyles({
@@ -73,7 +74,11 @@ function ShoppingCart() {
                     ))
                     }
                 </ul>
+                <Box className={classes.itemTotalContainer}>
+                    <Typography>Total:</Typography>
+                </Box>
             </Grid>
+
         </Paper >
     )
 
