@@ -13,6 +13,9 @@ const useStyles = makeStyles({
     cartContainer: {
         padding: "20px",
     },
+    cartItem: {
+        listStyle: "none",
+    }
 });
 
 function ShoppingCart() {
@@ -29,7 +32,7 @@ function ShoppingCart() {
             <Grid container className={classes.cartContainer}>
                 <ul>
                     {cartItems && cartItems.map(item => (
-                        <li>{item.name}
+                        <li className={classes.cartItem}>{item.name}
                             <span><IconButton onClick={() => dispatch(removeFromCart(item))} size="small"><RemoveIcon /></IconButton>{item.count}<IconButton onClick={() => dispatch(addToCart(item))} size="small"><AddIcon /></IconButton></span>
                         </li>
                     ))
